@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVICE DOX VIP BY HAEL LEGION</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .login-container {
+            display: block;
+            margin: auto;
+            padding: 30px;
+            background-color: #333;
+            border-radius: 10px;
+            width: 300px;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .main-content {
+            display: none;
+            padding: 20px;
+        }
+        .search-bar {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+        .person-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .person-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .person-info div {
+            text-align: left;
+        }
+        .person-info div p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Pantalla de Login -->
+<div id="login" class="container">
+    <h2>SERVICE DOX VIP BY HAEL LEGION</h2>
+    <div class="login-container">
+        <input type="password" id="password" placeholder="Ingresa la contraseña">
+        <button onclick="checkPassword()">Acceder</button>
+    </div>
+</div>
+
+<!-- Página principal -->
+<div id="main" class="main-content">
+    <h2>SERVICE DOX VIP BY HAEL</h2>
+    <input type="text" id="search" class="search-bar" placeholder="Buscar persona..." oninput="searchData()">
+    <div id="results"></div>
+</div>
+
+<script>
+// Datos de las personas (ejemplo de Arigameplays)
+const peopleData = [
+    {
+        name: "Arigameplays",
+        dni: "38.784.999",
+        address: "Av. Siempre Viva 1234, Ciudad, México",
+        dob: "1997-10-07",
+        bloodType: "O+",
+        phone: "+52 55 1234 5678",
+        photo: "https://drive.google.com/uc?export=view&id=1-RZslUEQVdd7N2ciRHj8CIZ7Yog-vbDF" // Foto de Arigameplays
+    },
+    {
+        name: "Dalas Review",
+        dni: "35.384.210",
+        address: "Calle Ficticia 789, Madrid, España",
+        dob: "1990-06-01",
+        bloodType: "A-",
+        phone: "+34 911 234 567",
+        photo: "https://drive.google.com/uc?export=view&id=1-MIoLd95My91rZqXLFS3G7LXf1fy5jqM" // Foto de Dalas Review
+    },
+    {
+        name: "Coscu",
+        dni: "42.124.556",
+        address: "Avenida Libertador 4321, Buenos Aires, Argentina",
+        dob: "1995-03-15",
+        bloodType: "B+",
+        phone: "+54 9 11 2345 6789",
+        photo: "https://drive.google.com/uc?export=view&id=1-IH8IIW6i3gMauqmZ8Ovfl7-sVbsuxAE" // Foto de Coscu
+    },
+    {
+        name: "Juansguarnizo",
+        dni: "31.876.445",
+        address: "Calle Virtual 456, Bogotá, Colombia",
+        dob: "1994-09-22",
+        bloodType: "AB+",
+        phone: "+57 1 234 5678",
+        photo: "https://drive.google.com/uc?export=view&id=1-JrcvVtsh9XZGXolJFL_urZEANaW69me" // Foto de Juansguarnizo
+    },
+    {
+        name: "Xiaro",
+        dni: "27.192.345",
+        address: "Av. 9 de Julio 123, Rosario, Argentina",
+        dob: "1996-12-05",
+        bloodType: "O-",
+        phone: "+54 341 123 4567",
+        photo: "https://drive.google.com/uc?export=view&id=1-LHLvF7kGt-EJ5drYvlFjidj6LNRuC_h" // Foto de Xiaro
+    }
+];
+
+// Verificar la contraseña
+function checkPassword() {
+    const password = document.getElementById("password").value;
+    if (password === "HAELVIP777") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("main").style.display = "block";
+    } else {
+        alert("Contraseña incorrecta.");
+    }
+}
+
+// Buscar los datos
+function searchData() {
+    const searchQuery = document.getElementById("search").value.toLowerCase();
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = ''; // Limpiar resultados
+
+    const filteredPeople = peopleData.filter(person => person.name.toLowerCase().includes(searchQuery));
+
+    if (filteredPeople.length > 0) {
+        filteredPeople.forEach(person => {
+            const personDiv = document.createElement('div');
+            personDiv.classList.add('person-info');
+            personDiv.innerHTML = `
+                <img src="${person.photo}" alt="${person.name}">
+                <div>
+                    <h3>${person.name}</h3>
+                    <p><strong>DNI:</strong> ${person.dni}</p>
+                    <p><strong>Dirección:</strong> ${person.address}</p>
+                    <p><strong>Fecha de Nacimiento:</strong> ${person.dob}</p>
+                    <p><strong>Tipo de Sangre:</strong> ${person.bloodType}</p>
+                    <p><strong>Teléfono:</strong> ${person.phone}</p>
+                </div>
+            `;
+            resultsDiv.appendChild(personDiv);
+        });
+    } else {
+        resultsDiv.innerHTML = "<p>No se encontraron resultados.</p>";
+    }
+}
+</script>
+
+</body>
+</html>
